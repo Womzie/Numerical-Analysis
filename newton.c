@@ -18,8 +18,39 @@ The -lm links with the math library
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <complex.h>
 
-double f1 (double x)
+// Print Complex Number //
+void prcmx (char *control, complex c)
+{
+  double a,b ;
+  a = creal(c) ;
+  b = cimag(c) ;
+
+  printf(control,a) ;
+  if (b >= 0) {
+    printf("+") ;
+  } else {
+    printf("-") ;
+  }
+  printf(control,fabs(b)) ;  
+  printf("I") ;
+}
+
+// Scans for Complex Number //
+complex sccmx ()
+{
+  double rp,ip ;
+  complex c ;
+  scanf("%lf %lf",&rp, &ip) ;
+  c = rp + ip*I ;
+  return c ;
+}
+
+
+
+
+double f (double x)
 {
   double y ;
   y = x*x - 2 ;
@@ -27,7 +58,7 @@ double f1 (double x)
 }
 
 
-double f2 (double x)
+double fprime (double x)
 //  three roots,
 //  -3 - sqrt(3) = -4.732050,
 //  -3 + sqrt(3) = -1.267949,
