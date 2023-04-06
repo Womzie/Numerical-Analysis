@@ -4,7 +4,16 @@
 #include <math.h>
 #include <stdlib.h>
 
+const double DELTA = 1e-13;
+
+
 const int L = 20;
+
+
+double f(double A, double B, double x){
+  return A + B * x;
+}
+
 
 
 int printMatrix(double  mat[L][L], int n)
@@ -14,12 +23,23 @@ int printMatrix(double  mat[L][L], int n)
     {
         for (int j = 1; j <= n + 1; j++)
         {
-            print_fraction("", mat[i][j], "");
+	  printf("%10.6f \t", mat[i][j]);
         }
         printf("\n");
     }
 }
 
+int solveMatrix(double m[L][L], int n, double result[]){
+
+  for(int i = n; i > 0; i--){
+    double sum = 0;
+    for(int j = 1; j <= n; j++){
+      sum += result[j] * m[i][j];
+    }
+    result[i] = (m[i][n+1] - sum)/m[i][i];
+  }
+  return 1;
+}
 
 int triangularize(double m[L][L], int n){
   
@@ -78,7 +98,7 @@ int triangularize(double m[L][L], int n){
 
 
 int findAB(double x[], double y[], int numpoints){
-
+  int n = 2;
   double mat[L][L];
   
   // build a 2x2 matrix
@@ -106,8 +126,32 @@ int findAB(double x[], double y[], int numpoints){
   printf("sum of Xs: %lf \n", sum_of_Xs);
   printf("sum of Ys: %lf \n", sum_of_Ys);
   printf("sum of square Xs: %lf \n", sum_of_sqXs);
-  printf("sum of X+Ys: %lf \n", sum_of_Xs + sum_of_Ys);
+  printf("sum of X*Ys: %lf \n", sum_of_XYs);
 
+  printMatrix(mat, 2);
+
+  triangularize(mat, 2);
+
+  printMatrix(mat, 2);
+  
+  double result[2];
+  solveMatrix(mat, 2, result);
+
+  for(int i = 1; i <= 2; i++){
+       printf("%10.2f", result[i]);
+     }
+     printf("\n");
+
+     double A = result[0];
+     double B = result[1];
+      G_rgb(1,0,0);
+      for(double x = 0; x < 800; x++){
+	double y = f(A,B, x);
+	G_fill_circle(x, y, 1);
+	printf("%lf %lf \n",x,y);
+    
+	  }
+  
   return 1;
 }
 
@@ -158,7 +202,7 @@ int main()
   findAB(x,y,n);
   //G_rgb(1,1,0) ;
   //G_fill_polygon(x,y,n) ;
-  
+ 
 
   G_wait_key() ;
 }
