@@ -11,7 +11,23 @@
 //       L3 D3 R3      Q3
 //          L4 D4      Q4
 
+int print_tridiag(double L[], double D[], double R[], double Q[], int n, double x[]){
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < i; j++){
+      printf("\t");
+    }
+    if(i > 0){
+      printf("%lf\t", L[i]);
+    }
+    printf("%lf\t", D[i]);
 
+    if(i < n-1){
+      printf("%lf\t", R[i]);
+    }
+
+    printf("\n");
+  }
+}
 
 
 int tri_diagonal_solver (double L[],
@@ -21,6 +37,10 @@ int tri_diagonal_solver (double L[],
 			 int n,
                          double x[])
 {
+
+  for(int i = 0; i < n; i++){
+    
+  }
 
 }
 
@@ -71,7 +91,7 @@ int main()
                                                   L[n] =  3 ; D[n] =  4 ;       Q[n] = 23 ;   n++ ;
 
   // the solution is 3 2 4 0 1 5
-
+						 
   s = tri_diagonal_solver (L,D,R,Q,n,x) ;
 
   if (s != 1) {
