@@ -33,5 +33,25 @@
     "**/.vscode",
     "**/.vscode/**"
   ],
-  "C_Cpp_Runner.useAddressSanitizer": false
+  "C_Cpp_Runner.useAddressSanitizer": false,
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#f296cc",
+    "activityBar.background": "#f296cc",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#48710e",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "commandCenter.border": "#15202b99",
+    "sash.hoverBorder": "#f296cc",
+    "statusBar.background": "#ec69b6",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#e63ca0",
+    "statusBarItem.remoteBackground": "#ec69b6",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#ec69b6",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#ec69b699",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.remoteColor": "#ec69b6"
 }
