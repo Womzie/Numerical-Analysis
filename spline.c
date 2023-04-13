@@ -144,6 +144,7 @@ int main()
 
   n = clickandsave(p,q) ;
 
+
   int numpoints = n;
 
   double L[1000],D[1000],R[1000],Z[1000] ;
@@ -156,17 +157,32 @@ int main()
   build_tridiag(L, D, R, Z, size, p, q);
 
   int s;
-  s = tri_diagonal_solver (L,D,R,Z,n,x) ;
+  s = tri_diagonal_solver (L,D,R,Z,size,x) ;
 
   if (s != 1) {
    printf("Could not find a unique solution.\n") ;
    exit(0) ;
   }
   printf("\nSolution to the tridiagonal system is :\n") ;
-  for (i = 0 ; i < n ; i++) {
+  for (i = 0 ; i < size ; i++) {
    printf("%lf\n",x[i]) ;
   }
   printf("\n") ;	
+
+  G_rgb(1, 0, 0);
+
+  int xA = 0; 
+  int xB = 1;
+  for(int j = 1; j < numpoints; j++){
+    for(int i = p[j-1]; i < p[j]; i ++){
+      double y = q[j-1] + (q[j] - q[j-1])/(p[j] - p[j-1]) * (i - p[j-1]) + (x[xA] * (i - p[j-1]) * (i - p[j])) + (x[xB] * pow((i - p[j-1]), 2) * (i - p[j]));
+      G_fill_circle(i, y, 1);
+    }
+    xA += 2;
+    xB += 2;
+  }
+  
+  
 
   G_wait_key() ;
 }
