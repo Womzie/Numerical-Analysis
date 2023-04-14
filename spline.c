@@ -170,7 +170,7 @@ int main()
   printf("\n") ;	
 
   G_rgb(1, 0, 0);
-
+  
   int xA = 0; 
   int xB = 1;
   for(int j = 1; j < numpoints; j++){
