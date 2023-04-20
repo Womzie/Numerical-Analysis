@@ -108,7 +108,8 @@ int main()
   int numpoints = n;
 
   if(numpoints < 4){
-    printf("Please select at least 4 points");
+    printf("Please select at least 4 points \n");
+    exit(0);
   }
 
   
