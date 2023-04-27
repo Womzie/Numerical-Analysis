@@ -129,7 +129,7 @@ int buildMatrix(fraction mat[L][L], int p)
 
     triangularize(mat, p);
 
-    printMatrix(mat, p);
+    //printMatrix(mat, p);
 
     solveMatrix(mat, p);
 }

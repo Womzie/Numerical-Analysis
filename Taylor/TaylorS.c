@@ -196,7 +196,7 @@ int ln_T(double r[], double u[]){
   
   for( n = 1; n <= Tdegree ; n++){
     sum = u[n];
-    printf("%lf \n" , p[n-1]);
+    //printf("%lf \n" , p[n-1]);
     for( k = 1 ; k < n ; k++){
       sum -= k * p[k] * u[n-k];
     }
@@ -208,9 +208,69 @@ int ln_T(double r[], double u[]){
     p[n] = sum;
   }
 
-  printf("%lf \n", p[1]);
+  //printf("%lf \n", p[1]);
   copy_T (r, p);
   return 1;
 
+  
+}
+
+int cossin_T(double c[], double s[], double u[]){
+   int n, k;
+   double pc[1000], ps[1000];
+   
+  pc[0] = cos(u[0]);
+  ps[0] = sin(u[0]);
+
+  for (int n = 1; n <= Tdegree; n++) {
+    double sumC = 0;
+    double sumS = 0;
+
+    for (int k = 0; k < n; k++) {
+      sumC -= (n - k) * ps[k] * u[n - k];
+      sumS += (n - k) * pc[k] * u[n - k];
+    }
+
+    sumC /= n;
+    sumS /= n;
+
+    pc[n] = sumC;
+    ps[n] = sumS;
+  }
+
+  copy_T(c, pc);
+  copy_T(s, ps);
+
+  return 1;
+
+}
+
+int cos_T(double c[], double u[]){
+
+  double s[1000];
+
+  cossin_T(c, s, u);
+
+  return 1;
+}
+
+int sin_T(double s[], double u[]){
+  double c[1000];
+
+  cossin_T(c,s,u);
+
+  return 1;
+}
+
+int tan_T(double r[], double u[]){
+  double c[1000], s[1000], p[1000];
+
+  cossin_T(c,s,u);
+
+  Div_T(p, s,c);
+
+  copy_T(r, p);
+
+  return 1;
   
 }
